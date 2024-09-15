@@ -53,7 +53,7 @@ func TestSeekerMinio(t *testing.T) {
 	}
 
 	// assumed if the offsetEnd is not finish of csv file
-	seeker(object, 0, int(stat.Size))
+	seeker(object, 100, int(stat.Size))
 }
 
 func seeker(object *minio.Object, offsetStart, offsetEnd int) {
@@ -94,7 +94,7 @@ func seeker(object *minio.Object, offsetStart, offsetEnd int) {
 			log.Warn().Err(err).Msg("Error reading csv file")
 		}
 
-		log.Info().Int("start", offsetStart).Int("end", len(line)).Int("length", len(record))
+		log.Info().Int("start", offsetStart).Int("end", len(line)).Int("length", len(record)).Msg("DONE")
 
 		currentOffsetPos += len(line)
 		if currentOffsetPos-1 > offsetEnd {
